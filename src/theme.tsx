@@ -8,11 +8,11 @@ export const theme = createTheme({
         },
         secondary: {
             main: '#E6EBEB',
-            light: '#F5FAFA',
-            dark: '#CDD1D1',
+            light: '#fff',
+            dark: '#000',
         },
         info: {
-            main: '#677C87',
+            main: '#222',
             light: '#79A5BD',
             dark: '#3C7898'
         },
@@ -23,7 +23,7 @@ export const theme = createTheme({
             main: '#F1E3D6'
         },
         success: {
-            main: '#668E7C',
+            main: '#555555',
             light: '#7db29a'
         }
         // mode?: PaletteMode;

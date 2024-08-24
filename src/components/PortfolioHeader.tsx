@@ -1,31 +1,74 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import MailIcon from '@mui/icons-material/Mail';
+import { Stack } from '@mui/material';
 
-function PortfolioHeader() {
+
+export interface PortfolioHeaderProps {
+    backgroundColor: string
+}
+
+function PortfolioHeader({ backgroundColor }: PortfolioHeaderProps) {
+
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsVisible(true);
+        }, 100);  // Delay to trigger animation after component mounts
+    }, []);
+
     return (
-        <AppBar position="sticky" elevation={0}>
-            <Toolbar >
+        <Box sx={{
+            height: "100vh",
+            width: "5vw",
+            position: 'fixed',
+            top: 0,
+            left: isVisible ? 0 : '-5vw',
+            transition: 'left 1s ease-in-out',
+            overScrollBehavior: "none",
+        }}>
+            <Stack direction={"column"} alignItems={"center"} justifyContent={"center"} sx={{
+
+            }}
+            >
                 <IconButton
                     size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    sx={{ mr: 2 }}
+                    href="https://www.instagram.com/alexvthornton/"
+                    target="_blank"
+                    sx={{ color: backgroundColor === 'black' ? 'white' : 'black' }}
                 >
-                    <MenuIcon />
+                    <InstagramIcon />
                 </IconButton>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    News
+                <IconButton
+                    size="large"
+                    href="https://www.linkedin.com/in/alex-thornton-431b69210/"
+                    target="_blank"
+                    sx={{ color: backgroundColor === 'black' ? 'white' : 'black' }}
+
+                >
+                    <LinkedInIcon />
+                </IconButton>
+                <IconButton
+                    size="large"
+                    href="mailto:athornton.media@gmail.com"
+                    sx={{ color: backgroundColor === 'black' ? 'white' : 'black' }}
+
+                >
+                    <MailIcon />
+                </IconButton>
+                <Typography variant="h6" sx={{
+                    transform: "rotate(-90deg)",
+                    color: backgroundColor === 'black' ? 'white' : 'black' 
+                }}>
                 </Typography>
-                <Button color="inherit">Login</Button>
-            </Toolbar>
-        </AppBar>
+            </Stack>
+        </Box>
     );
 }
 
