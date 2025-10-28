@@ -4,6 +4,7 @@ import VideoGallery from '../components/VideoGallery';
 import YouTubeEmbed from '../components/YouTubeEmbed';
 import PortfolioHeader from '../components/PortfolioHeader';
 import PhotoArrow from '../components/PhotoArrow';
+import weddingVideo from '../assets/video/wedding-video.webm';
 
 interface YouTubeVideo {
     id: string;
@@ -52,7 +53,7 @@ function WeddingPage() {
             </Box>
 
             <Stack direction={"column"} alignItems={"center"} sx={{ width: "90vw" }}>
-                <VideoGallery videoSrc="/src/assets/video/wedding-video.webm" />
+                <VideoGallery videoSrc={weddingVideo} />
 
                 {/* YouTube Videos Section */}
                 <Box

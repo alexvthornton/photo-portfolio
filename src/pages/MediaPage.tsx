@@ -4,6 +4,7 @@ import VideoGallery from '../components/VideoGallery';
 import PhotoGallery from '../components/PhotoGallery';
 import PortfolioHeader from '../components/PortfolioHeader';
 import PhotoArrow from '../components/PhotoArrow';
+import portolioVideo from '../assets/video/potfolio-video.webm'
 
 function MediaPage() {
     const [background, setBackground] = useState("black");
@@ -40,7 +41,7 @@ function MediaPage() {
             </Box>
 
             <Stack direction={"column"} alignItems={"center"} sx={{ width: "90vw" }}>
-                <VideoGallery videoSrc="/src/assets/video/potfolio-video.webm" />
+                <VideoGallery videoSrc={portolioVideo} />
                 <PhotoGallery />
             </Stack>
         </Stack>
