@@ -1,16 +1,17 @@
-import { Box, Grid, LinearProgress, Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import React from "react";
 import CustomImage from "./Image";
 import ImageModal from "./ImageModal";
 
 export interface ImageType {
     src: string
+    fullRes: string
     aspectRatio: number
     orientation: string
 }
 
 const gallery = Object.values(
-    import.meta.glob('../assets/images/**/*.{png,jpg,jpeg,PNG,JPEG}', { eager: true, as: 'url' })
+    import.meta.glob('../assets/images/thumbnails/**/*.{png,jpg,jpeg,PNG,JPEG,JPG}', { eager: true, as: 'url' })
 ).map((image): Promise<ImageType> => {
     const img = new Image();
     img.src = image;
@@ -19,6 +20,7 @@ const gallery = Object.values(
         img.onload = () => {
             resolve({
                 src: image,
+                fullRes: image.replace("thumbnails", "fullres"),
                 aspectRatio: img.width / img.height,
                 orientation: img.width / img.height > 1 ? "landscape" : "portrait"
             });
@@ -34,8 +36,10 @@ function PhotoGallery() {
 
     React.useEffect(() => {
         Promise.all(gallery).then((loadedImages) => {
+            // const sorted = loadedImages.sort()
             setImages(loadedImages as []);
         });
+        console.log(images)
     }, []);
 
     const handleImageClick = (src: string) => {
@@ -107,7 +111,7 @@ function PhotoGallery() {
         <Stack spacing={.5} >
             {renderRows()}
             <ImageModal images={images} open={openImage} setOpen={setImageOpen} imgIndex={imgIndex} setImgIndex={setImgIndex} />
-            
+
         </Stack>
     );
 }

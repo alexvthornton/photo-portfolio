@@ -1,5 +1,3 @@
-import { Box } from '@mui/material';
-import React, { ReactEventHandler, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const CustomImage = ({ image }: any) => {

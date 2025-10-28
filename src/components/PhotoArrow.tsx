@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import AppBar from '@mui/material/AppBar';
+import { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import MailIcon from '@mui/icons-material/Mail';
-import { LinearProgress, Stack } from '@mui/material';
+import { keyframes, Stack } from '@mui/material';
+import { styled } from '@mui/system';
 
+export interface PhotoArrowProps {
+    text?: string;
+}
 
-function PhotoArrow() {
+function PhotoArrow({ text = "PHOTOS" }: PhotoArrowProps) {
 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -19,17 +18,30 @@ function PhotoArrow() {
         }, 1000);  // Delay to trigger animation after component mounts
     }, []);
 
+    const moveUpDown = keyframes`
+    0% { transform: translateY(-100px); },
+    100% { transform: translateY(100px); }
+    `
+
+    const StyledBox = styled(Box)(() => ({
+        width: "5px",
+        height: "75px",
+        backgroundColor: '#aaa',
+        animation: `${moveUpDown} 2s infinite`,
+    }))
+
+
     return (
         <Stack
             sx={{
                 position: 'fixed',
-                left: '0',
+                left: '2vw',
                 bottom: isVisible ? 0 : '-20vh',
-                height: '10vh',
-                width: "5vw",
+                height: '100px',
+                width: "50px",
                 transition: 'bottom 1s ease-in-out',
-                // border: "2px solid red"
             }}
+            direction={"row"}
             justifyContent="start"
             alignItems="space between"
             spacing={1}
@@ -37,20 +49,16 @@ function PhotoArrow() {
         >
             <Typography variant="body2" fontSize="12px" sx={{
                 color: '#bbb',
-                position: "absolute",
-                top: "-7vh",
-                right: "-3vh"
+                position: 'absolute',
+                top: '20px',
+                right: "30px",
+                transform: "rotate(-90deg)"
             }}>
-                PHOTOS
+                {text}
             </Typography>
-            <LinearProgress
-                color={"info"}
-                sx={{
-                    height: "2px",
-                    width: "100%",
-                    transform: 'rotate(90deg)', // Rotate to make it vertical
-                }}
-            />
+            <Box sx={{ height: '100px', width: '5px', overflow: "hidden", backgroundColor: "#222", borderRadius: "3px"}}>
+                <StyledBox />
+            </Box>
         </Stack>
     );
 }

@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Stack } from "@mui/material";
 
+export interface VideoGalleryProps {
+    videoSrc: string;
+}
 
-
-function VideoGallery() {
+function VideoGallery({ videoSrc }: VideoGalleryProps) {
 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -33,7 +35,7 @@ function VideoGallery() {
                     objectFit: 'cover',
                 }}
             >
-                <source src="/src/assets/video/potfolio-video.m4v" type="video/mp4" />
+                <source src={videoSrc} type="video/webm" />
                 Your browser does not support the video tag.
             </video>
         </Stack>

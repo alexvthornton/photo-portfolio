@@ -1,0 +1,9 @@
+[
+    {
+        "docker": {
+            "endpoints": {
+                "host": "test-test.com"
+            }
+        }
+    }
+]
