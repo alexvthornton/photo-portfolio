@@ -7,6 +7,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Navigate to="/wedding" replace />} />
         <Route path="/media" element={<MediaPage />} />
         <Route path="/wedding" element={<WeddingPage />} />
         <Route path="/" element={<Navigate to="/media" replace />} />
