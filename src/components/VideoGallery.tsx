@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
 export interface VideoGalleryProps {
     videoSrc: string;
@@ -23,21 +23,30 @@ function VideoGallery({ videoSrc }: VideoGalleryProps) {
             height: "100vh",
             bottom: isVisible ? 0 : '-20vh',
             transition: 'bottom 1s ease-in-out',
+            marginBottom: "20px",
         }} alignItems={"center"} justifyContent={"center"}
         >
-            <video
-                loop
-                autoPlay
-                muted
-                playsInline
-                style={{
-                    height: "85vh",
-                    objectFit: 'cover',
-                }}
-            >
-                <source src={videoSrc} type="video/webm" />
-                Your browser does not support the video tag.
-            </video>
+            <Box sx={{
+                width: '100%',
+                height: '100vh',
+                overflow: 'hidden',
+            }}>
+                <video
+                    loop
+                    autoPlay
+                    muted
+                    playsInline
+                    style={{
+                        width: '100%',
+                        height: 'calc(100vh - 80px)',
+                        marginTop: '40px',
+                        objectFit: 'cover',
+                    }}
+                >
+                    <source src={videoSrc} type="video/webm" />
+                    Your browser does not support the video tag.
+                </video>
+            </Box>
         </Stack>
     );
 }

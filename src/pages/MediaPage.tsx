@@ -29,6 +29,7 @@ function MediaPage() {
     return (
         <Stack
             direction={"row"}
+            alignItems={"center"} justifyContent={"center"}
             sx={{
                 backgroundColor: background,
                 transition: "background-color 1s ease",
@@ -36,11 +37,11 @@ function MediaPage() {
             }}
         >
             {background === 'black' && <PhotoArrow text="PHOTOS" />}
-            <Box sx={{ width: "5vw" }}>
+            <Box >
                 <PortfolioHeader backgroundColor={background} />
             </Box>
 
-            <Stack direction={"column"} alignItems={"center"} sx={{ width: "90vw" }}>
+            <Stack direction={"column"} alignItems={"center"} sx={{ width: "85vw"}}>
                 <VideoGallery videoSrc={portolioVideo} />
                 <PhotoGallery />
             </Stack>

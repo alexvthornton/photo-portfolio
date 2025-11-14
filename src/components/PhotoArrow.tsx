@@ -3,12 +3,15 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { keyframes, Stack } from '@mui/material';
 import { styled } from '@mui/system';
+import { useTheme, useMediaQuery } from "@mui/material";
 
 export interface PhotoArrowProps {
     text?: string;
 }
 
 function PhotoArrow({ text = "PHOTOS" }: PhotoArrowProps) {
+    const theme = useTheme();
+    const isXs = useMediaQuery(theme.breakpoints.only("xs"));
 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -35,11 +38,12 @@ function PhotoArrow({ text = "PHOTOS" }: PhotoArrowProps) {
         <Stack
             sx={{
                 position: 'fixed',
-                left: '2vw',
+                left: '1vw',
                 bottom: isVisible ? 0 : '-20vh',
                 height: '100px',
-                width: "50px",
+                width: "80px",
                 transition: 'bottom 1s ease-in-out',
+                border: "0px solid green"
             }}
             direction={"row"}
             justifyContent="start"
@@ -47,18 +51,26 @@ function PhotoArrow({ text = "PHOTOS" }: PhotoArrowProps) {
             spacing={1}
 
         >
-            <Typography variant="body2" fontSize="12px" sx={{
-                color: '#bbb',
-                position: 'absolute',
-                top: '20px',
-                right: "30px",
-                transform: "rotate(-90deg)"
-            }}>
-                {text}
-            </Typography>
-            <Box sx={{ height: '100px', width: '5px', overflow: "hidden", backgroundColor: "#222", borderRadius: "3px"}}>
-                <StyledBox />
-            </Box>
+            <Stack justifyContent="center"
+                alignItems="start"
+                direction={"row"}
+                spacing={-1}
+                sx={{border: "0px solid red"}}
+                >
+
+                {!isXs && <Typography variant="body2" fontSize="12px" sx={{
+                    color: '#bbb',
+                    // position: 'absolute',
+                    // top: '20px',
+                    // right: "30px",
+                    transform: "rotate(-90deg) translate(-30%)",
+                }}>
+                    {text}
+                </Typography>}
+                <Box sx={{ height: '100px', width: '5px', overflow: "hidden", backgroundColor: "#222", borderRadius: "3px" }}>
+                    <StyledBox />
+                </Box>
+            </Stack>
         </Stack>
     );
 }

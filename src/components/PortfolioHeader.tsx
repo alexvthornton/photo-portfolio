@@ -6,7 +6,6 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import MailIcon from '@mui/icons-material/Mail';
 import { Stack, Tooltip } from '@mui/material';
 
-
 export interface PortfolioHeaderProps {
     backgroundColor: string;
     showInstagram?: boolean;
@@ -32,12 +31,13 @@ function PortfolioHeader({
     return (
         <Box sx={{
             height: "100vh",
-            width: "5vw",
+            width: "8vw",
             position: 'fixed',
             top: 0,
             left: isVisible ? 0 : '-5vw',
             transition: 'left 1s ease-in-out',
             overScrollBehavior: "none",
+
         }}>
             <Stack direction={"column"} alignItems={"center"} justifyContent={"center"}>
                 {showInstagram && (

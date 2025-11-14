@@ -8,10 +8,8 @@ const App = () => {
     <Router basename="/photo-portfolio">
       <Routes>
         <Route path="/" element={<Navigate to="/wedding" replace />} />
-
         <Route path="/media" element={<MediaPage />} />
         <Route path="/wedding" element={<WeddingPage />} />
-        <Route path="/" element={<Navigate to="/media" replace />} />
       </Routes>
     </Router>
   );

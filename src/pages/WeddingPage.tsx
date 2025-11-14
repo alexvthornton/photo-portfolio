@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
-import { Stack, Box, Typography } from '@mui/material';
+import { Stack, Box } from '@mui/material';
 import VideoGallery from '../components/VideoGallery';
-import YouTubeEmbed from '../components/YouTubeEmbed';
+import WeddingSectionCarousel from '../components/WeddingSectionCarousel';
+import PricingWithSlideshow from '../components/PricingWithSlideshow';
+import WeddingFooter from '../components/WeddingFooter';
 import PortfolioHeader from '../components/PortfolioHeader';
 import PhotoArrow from '../components/PhotoArrow';
 import weddingVideo from '../assets/video/wedding-video.webm';
-
-interface YouTubeVideo {
-    id: string;
-    title: string;
-}
+import { useTheme, useMediaQuery } from "@mui/material";
+import { weddingData } from '../data/weddingData';
 
 function WeddingPage() {
     const [background, setBackground] = useState("black");
+
+    const theme = useTheme();
+    const isXs = useMediaQuery(theme.breakpoints.only("xs"));
 
     const handleScroll = () => {
         const scrollY = window.scrollY;
@@ -31,63 +33,45 @@ function WeddingPage() {
         };
     }, []);
 
-    // You can add your YouTube video IDs here
-    const youtubeVideos: YouTubeVideo[] = [
-        { id: 'HVCG9xnMEGU', title: 'Wedding Video 1' },
-        { id: 'oDlXypGqj6Y', title: 'Wedding Video 3' },
-        { id: 'O58W6HOANLQ', title: 'Wedding Video 2' },
-    ];
-
     return (
-        <Stack
-            direction={"row"}
-            sx={{
-                backgroundColor: background,
-                transition: "background-color 1s ease",
-                minHeight: "100vh",
-            }}
-        >
-            {background === 'black' && <PhotoArrow text="VIDEOS" />}
-            <Box sx={{ width: "5vw" }}>
-                <PortfolioHeader backgroundColor={background} showLinkedIn={false} />
-            </Box>
-
-            <Stack direction={"column"} alignItems={"center"} sx={{ width: "90vw" }}>
-                <VideoGallery videoSrc={weddingVideo} />
-
-                {/* YouTube Videos Section */}
-                <Box
-                    sx={{
-                        width: '100%',
-                        maxWidth: '1200px',
-                        padding: '4rem 2rem',
-                    }}
-                >
-                    {youtubeVideos.length > 0 ? (
-                        <>
-                            {youtubeVideos.map((video, index) => (
-                                <YouTubeEmbed
-                                    key={index}
-                                    videoId={video.id}
-                                    title={video.title}
-                                />
-                            ))}
-                        </>
-                    ) : (
-                        <Typography
-                            variant="h5"
-                            sx={{
-                                textAlign: 'center',
-                                color: '#666',
-                                fontStyle: 'italic'
-                            }}
-                        >
-                            YouTube videos will appear here
-                        </Typography>
-                    )}
+        <Box sx={{ overflowX: 'hidden', width: '100%' }}>
+            <Stack
+                direction={"row"}
+                alignItems={"center"} justifyContent={"center"}
+                sx={{
+                    backgroundColor: background,
+                    transition: "background-color 1s ease",
+                    minHeight: "100vh",
+                }}
+            >
+                {background === 'black' && <PhotoArrow text="VIDEOS" />}
+                <Box>
+                    <PortfolioHeader backgroundColor={background} showLinkedIn={false} />
                 </Box>
+
+                <Stack direction={"column"} alignItems={"center"} sx={{ width: isXs ? "75vw" : "85vw" }}>
+                    <VideoGallery videoSrc={weddingVideo} />
+
+                    {/* Wedding Sections Carousel */}
+                    <Stack
+                        sx={{
+                            width: '100%',
+                            // border: "2px solid red"
+                        }}
+                        alignItems={"center"} justifyContent={"center"}
+
+                    >
+                        <WeddingSectionCarousel weddings={weddingData} />
+
+                        {/* Pricing Section with Slideshow */}
+                        <PricingWithSlideshow />
+                    </Stack>
+                </Stack>
             </Stack>
-        </Stack>
+
+            {/* Footer */}
+            <WeddingFooter />
+        </Box>
     );
 }
 
