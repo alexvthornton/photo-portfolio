@@ -20,5 +20,4 @@ for file in files:
 
         output_path = os.path.join(output_dir, f"{random.randint(1,100)}_.png")
 
-        with Image.open(input_path) as img:
-            img.save(output_path, optimize=True)
+        os.rename(input_path, output_path)
