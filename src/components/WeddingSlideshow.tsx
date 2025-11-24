@@ -60,7 +60,7 @@ const WeddingSlideshow = () => {
         height: '100%',
         overflow: 'hidden',
         display: 'flex',
-        flexDirection: { xs: 'row', sm: 'column' },
+        flexDirection: { xs: 'row', md: 'column' },
         gap: '1rem',
       }}
     >
@@ -68,8 +68,8 @@ const WeddingSlideshow = () => {
         <Box
           key={index}
           sx={{
-            width: { xs: '80vw', sm: '100%' },
-            minHeight: { xs: '100%', sm: '200px' },
+            width: { xs: '80vw', md: '100%' },
+            minHeight: { xs: '100%', md: '200px' },
             borderRadius: '4px',
             overflow: 'hidden',
             flexShrink: 0,

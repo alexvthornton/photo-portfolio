@@ -77,7 +77,7 @@ const WeddingSectionCarousel = ({ weddings }: WeddingSectionCarouselProps) => {
             onClick={handlePrevious}
             sx={{
               position: 'absolute',
-              left: { xs: '0.5rem', sm: '1rem' },
+              left: { xs: '0.25rem', sm: '0.5rem' },
               top: '50%',
               transform: 'translateY(-50%)',
               backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -85,7 +85,7 @@ const WeddingSectionCarousel = ({ weddings }: WeddingSectionCarouselProps) => {
               '&:hover': {
                 backgroundColor: 'rgba(0, 0, 0, 0.7)',
               },
-              zIndex: 10,
+              zIndex: 5,
             }}
             aria-label="Previous wedding"
           >
@@ -96,7 +96,7 @@ const WeddingSectionCarousel = ({ weddings }: WeddingSectionCarouselProps) => {
             onClick={handleNext}
             sx={{
               position: 'absolute',
-              right: { xs: '0.5rem', sm: '1rem' },
+              right: { xs: '0.25rem', sm: '0.5rem' },
               top: '50%',
               transform: 'translateY(-50%)',
               backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -104,7 +104,7 @@ const WeddingSectionCarousel = ({ weddings }: WeddingSectionCarouselProps) => {
               '&:hover': {
                 backgroundColor: 'rgba(0, 0, 0, 0.7)',
               },
-              zIndex: 10,
+              zIndex: 5,
             }}
             aria-label="Next wedding"
           >
